@@ -1,3 +1,10 @@
+// test code (main func)
+// last modified : 25 / 08 / 2014
+// DFT done
+// DCT done
+
+
+
 #include	"basic.h"
 
 int main()
@@ -49,7 +56,32 @@ int main()
 
 	cout << endl;
 #pragma endregion
+#pragma region test_code_DCT
+	double dctin[15] = { 2, 55, 7, 99, 8, 43, 20, 4, 66, 7, 8, 4, 54, 10, 13 };
+	double dctout[15] = { 0, };
+	double idctout[15] = { 0, };
 
+	cout << "Signal ";
+	for (int i = 0; i < 15; ++i)
+		cout << dctin[i] << ", ";
+	cout << endl;
+
+	DY_DCT_1D(dctout, dctin, 15);
+
+	cout << "DCT" << endl;
+	cout << "Signal ";
+	for (int i = 0; i < 15; ++i)
+		cout << dctout[i] << ", ";
+	cout << endl;
+
+	DY_DCT_1D(idctout, dctout, 15, BACKWARD);
+
+	cout << "IDCT" << endl;
+	cout << "Signal ";
+	for (int i = 0; i < 15; ++i)
+		cout << idctout[i] << ", ";
+	cout << endl;
+#pragma endregion
 
 	return 0;
 }

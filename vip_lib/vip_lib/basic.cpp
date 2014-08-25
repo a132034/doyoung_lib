@@ -48,3 +48,46 @@ void __stdcall DY_DFT_1D(double* real, double* imagine, const int length, const 
 		ti = NULL;
 	}
 }
+
+void __stdcall DY_DCT_1D(double* dst, double*  src, const int length, const int direction)
+{
+	register int k, n;
+	int N = length;
+	double dct = 0.0;
+	double temp = 0.0;
+	double omega = 0.0;
+	double *_dst, *_src;
+	_dst = dst;
+	_src = src;
+	for (k = 1; k <= N; ++k) // °á°ú Loop
+	{
+		dct = 0.0;
+		for (n = 1; n <= N; ++n) // sigma
+		{
+			if (direction == 1)
+			{
+				if (k == 1)
+					omega = 1.0 / sqrt((double)N);
+				else // 2 <= k <= N
+				{
+					omega = 2.0 / N;
+					omega = sqrt(omega);
+				}
+				temp = (PI * (2.0 * n - 1) * (k - 1)) / (2 * N);
+			}
+			else 
+			{
+				if (n == 1)
+					omega = 1.0 / sqrt((double)N);
+				else // 2 <= k <= N
+				{
+					omega = 2.0 / N;
+					omega = sqrt(omega);
+				}
+				temp = (PI * (2.0 * k - 1) * (n - 1)) / (2 * N);
+			}
+			dct += omega * _src[n - 1] * cos(temp);
+		}
+		_dst[k - 1] = dct;
+	}
+}
