@@ -5,7 +5,7 @@
 // ALL RIGHTS RESERVED BY DO-YOUNG PARK
 // FUNCTIONS FOR IMAGE PROCESSING
 
-// FUNCTION : DFT, DCT 
+// FUNCTION : DFT, DCT , CLIP
 
 
 #ifndef _DOYOUNG_LIB_
@@ -26,8 +26,13 @@ using namespace std;
 #define FORWARD 1
 #define BACKWARD -1
 
+#define clip(x, high, low)  ((x)>(high) ? (high) : ((x)<(low) ? (low) : (x)))
+
 void __stdcall DY_DFT_1D(double* real, double* imagine, const int length, const int direction = FORWARD);
 void __stdcall DY_DCT_1D(double* dst, double*  src, const int length, const int direction = FORWARD);
 
+
+
 #endif
+
 

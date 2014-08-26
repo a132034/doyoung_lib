@@ -1,8 +1,8 @@
 // test code (main func)
-// last modified : 25 / 08 / 2014
+// last modified : 26 / 08 / 2014
 // DFT done
 // DCT done
-
+// CLIP done
 
 
 #include	"basic.h"
@@ -82,6 +82,20 @@ int main()
 		cout << idctout[i] << ", ";
 	cout << endl;
 #pragma endregion
+#pragma region  CLIP
+	double clipT[10] = { 0.2, -11, 1000, 33.22, 4.5, 99.95, 258.18, 33.94, -22.55, -321.52 };
 
+	cout << "befor clipT" << endl;
+	for (int i = 0; i < 10; ++i)
+		cout <<clipT[i] << ", ";
+	cout << endl;
+
+	cout << "After clipT" << endl;
+	for (int i = 0; i < 10; ++i)
+		cout << clip(clipT[i], 255, 0) << ", ";
+	cout << endl;
+
+
+#pragma endregion
 	return 0;
 }
